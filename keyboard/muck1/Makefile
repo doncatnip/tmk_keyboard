@@ -39,7 +39,7 @@
 #----------------------------------------------------------------------------
 
 # Target file name (without extension).
-TARGET = muck1_pjrc
+TARGET = muck1_lufa
 
 # Directory common source filess exist
 TMK_DIR = ../../tmk_core
@@ -48,14 +48,13 @@ TMK_DIR = ../../tmk_core
 TARGET_DIR = .
 
 # project specific files
-SRC =	keymap_common.c \
-	matrix.c \
+SRC =	matrix.c \
 	led.c
 
 ifdef KEYMAP
     SRC := keymap_$(KEYMAP).c $(SRC)
 else
-    SRC := keymap_poker.c $(SRC)
+    SRC := keymap_qwerty.c $(SRC)
 endif
 
 CONFIG_H = config.h
@@ -75,11 +74,30 @@ MCU = atmega32u4
 F_CPU = 16000000
 
 
+#
+# LUFA specific
+#
+# Target architecture (see library "Board Types" documentation).
+ARCH = AVR8
+
+# Input clock frequency.
+#     This will define a symbol, F_USB, in all source code files equal to the
+#     input clock frequency (before any prescaling is performed) in Hz. This value may
+#     differ from F_CPU if prescaling is used on the latter, and is required as the
+#     raw input clock is fed directly to the PLL sections of the AVR for high speed
+#     clock generation for the USB and other AVR subsections. Do NOT tack on a 'UL'
+#     at the end, this will be done automatically to create a 32-bit value in your
+#     source code.
+#
+#     If no clock division is performed on the input clock inside the AVR (via the
+#     CPU clock adjust registers or the clock division fuses), this will be equal to F_CPU.
+F_USB = $(F_CPU)
+
 # Boot Section Size in *bytes*
 #   Teensy halfKay   512
 #   Atmel DFU loader 4096
 #   LUFA bootloader  4096
-OPT_DEFS += -DBOOTLOADER_SIZE=512
+OPT_DEFS += -DBOOTLOADER_SIZE=4096
 
 
 # Build Options
@@ -90,18 +108,17 @@ MOUSEKEY_ENABLE = yes	# Mouse keys(+5000)
 EXTRAKEY_ENABLE = yes	# Audio control and System control(+600)
 CONSOLE_ENABLE = yes    # Console for debug
 COMMAND_ENABLE = yes    # Commands for debug and configuration
-SLEEP_LED_ENABLE = yes  # Breathing sleep LED during USB suspend
+#SLEEP_LED_ENABLE = yes  # Breathing sleep LED during USB suspend
 NKRO_ENABLE = yes	# USB Nkey Rollover(+500)
-#PS2_MOUSE_ENABLE = yes	# PS/2 mouse(TrackPoint) support
 
 
 # Search Path
 VPATH += $(TARGET_DIR)
 VPATH += $(TMK_DIR)
 
-include $(TMK_DIR)/protocol/pjrc.mk
+include $(TMK_DIR)/protocol/lufa.mk
 include $(TMK_DIR)/common.mk
 include $(TMK_DIR)/rules.mk
 
-adnw: OPT_DEFS += -DKEYMAP_ADNW
-adnw: all
+#adnw: OPT_DEFS += -DKEYMAP_ADNW
+#adnw: all

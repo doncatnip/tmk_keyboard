@@ -10,7 +10,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            LGUI,LCTL,SPC, CAPS,LSFT,FN0, FN0, RSFT,CAPS,SPC, RCTL,RGUI),/* D6 */   
     /* 0: neo layer 4 */
     KEYMAP(F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, \
-           TRNS,PGUP,BSPC,INS, DEL, PGDN,NO,  7,   8,   9,   NO,  TRNS, \
+           TRNS,PGUP,BSPC,INS, DEL, PGDN,NO,  7,   8,   9,   EQL, TRNS, \
            TRNS,HOME,LEFT,UP,  RGHT,END, NO,  4,   5,   6,   P0,  TRNS, \
            TRNS,ESC, NO,  DOWN,ENT, NO,  NO,  1,   2,   3,   NO,  TRNS, \
            TRNS,TRNS,0,   TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,0,   TRNS,TRNS),
@@ -19,7 +19,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Fn action definition
  */
-const uint16_t PROGMEM fn_actions[] = {
+const action_t PROGMEM fn_actions[] = {
     /*[0] = ACTION_LAYER_TAP_KEY(1, KC_SPC),*/
     [0] = ACTION_LAYER_MOMENTARY(1),
 };

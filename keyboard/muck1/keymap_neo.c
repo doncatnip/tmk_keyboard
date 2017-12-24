@@ -16,6 +16,6 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            TRNS,TRNS,P0,  TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,P0,  TRNS,TRNS),
 };
 
-const uint16_t PROGMEM fn_actions[] = {
+const action_t PROGMEM fn_actions[] = {
     [0] = ACTION_LAYER_MOMENTARY(1),
 };
